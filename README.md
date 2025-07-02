@@ -20,14 +20,15 @@ The reason for choosing the ROC curve for our validation is because AUC values d
 ### BindingDB
 We want to look for a protein which loosely satisfies the following criteria: 
 - Has many experimental data points of `Kd` or `IC50` values for various molecules.
-- Has similarity with your essential gene and has the preferrably has the same source organism.
+- Has similarity with your essential gene and preferrably has the same source organism.
 
 Beta-lactamase enzymes from Pseudomonas aeruginosa are extensively studied because of their central role in antibiotic resistance. These enzymes hydrolyze the β-lactam ring in antibiotics(particularly penicillin and similar antibiotics), rendering them ineffective, and are a major reason for the clinical challenge posed by P. aeruginosa infections.
 
 ![2WZX](2WZX_PyMol_View.png "2WZX Viewed on PyMol")
 
 The rationale behind choosing this protein is evident - IC50 data pertaining to Beta Lactamase sourced from P. Aeruginosa is available with a large library of molecules. P. Aeruginosa is a pathogen of interest to us and is a member of the ESKAPE group of pathogens.
-You can download the single 3D SDF file available ahead of it. This single SDF file contains all the molecules inside it with a plethora of meta-data along with just the 3D coordinates and the IC50 values.
+A single 3D SDF file containing all molecules, their metadata, and IC50 values is available for download.
+
 > IC50 (half maximal inhibitory concentration) is the concentration of a substance required to inhibit a specific biological or biochemical function by 50%. It is commonly used to measure the potency of an inhibitor, such as a drug, against an enzyme, cell, or receptor. To calculate IC50, a series of dose-response experiments are performed, and the data are plotted to generate a curve; the IC50 is determined as the concentration where the response is reduced by half. IC50 values depend on experimental conditions and are typically expressed in molar concentration.
 
 ### `Split&Rename_IC50.py`
