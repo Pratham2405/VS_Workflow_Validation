@@ -1,3 +1,4 @@
+
 # Validation Workflow
 ## Introduction
 Docking at its best, is a probabilistic heuristic which gives us a much better chance that the ligands we choose are going to prove to be a hit in the real world than if we were to do it by randomly choosing the ligands for the next stage. By running our docking pipeline for a receptor having a chemical library of known active and inactives derived from in vitro assays, we can get an estimate on how effective the scoring function, choice of hyperparameters, ligand preparation, receptor preparation etc. are at enriching the true actives/positives at the top of our predicted ranked list and to eliminate False Negatives and False Positives.
@@ -11,6 +12,39 @@ We want to look for a protein which loosely satisfies the following criteria:
 - Has similarity with your essential gene and has the preferrably has the same source organism.
 
 For our purposes, we will choose Beta-Lactamase, a hydrolase 
+
+![2WZX](2WZX_PyMol_View.png "2WZX Viewed on PyMol")
+
 The rationale behind choosing this protein is evident - IC50 data pertaining to Beta Lactamase sourced from P. Aeruginosa is available with a large library of molecules. P. Aeruginosa is a pathogen of interest to us and is a member of the ESKAPE group of pathogens.
 You can download the single 3D SDF file available ahead of it. This single SDF file contains all the molecules inside it with a plethora of meta-data along with just the 3D coordinates and the IC50 values.
-> IC50 stands for 
+> IC50 (half maximal inhibitory concentration) is the concentration of a substance required to inhibit a specific biological or biochemical function by 50%. It is commonly used to measure the potency of an inhibitor, such as a drug, against an enzyme, cell, or receptor. To calculate IC50, a series of dose-response experiments are performed, and the data are plotted to generate a curve; the IC50 is determined as the concentration where the response is reduced by half. IC50 values depend on experimental conditions and are typically expressed in molar concentration.
+
+### `Split&Rename_IC50.py`
+To further enhance the difference between the actives and inactives, we can selectively choose molecules which are either highly active(IC50\<120 nM) or highly inactive(IC50\>10,000 nM) as per in vitro assays.
+`Split&Rename_IC50.py` does that and outputs the selected files as separate molecules. It also names the molecules with the molecule's IC50 value so it is easier to catch False Positives and False Negatives later on.
+
+### Virtual Screening
+An example of a virtual screening workflow has been thoroughly described in (repo link). After running `Split&Rename_IC50.py`, you shall run your in silico docking workflow. Be sure to get a ranked list of ligands with just two columns - Experimentally derived IC50 values and Predicted Binding Affinity. Export this ranking in a CSV file.
+
+### AUC Determination
+In `ROC_Script.py`, enter the path to the ranked CSV as input and run the script. The ROC curve would be plotted via `matplotlib` with the AUC score displayed as shown below:
+
+![ROC Curve Output](ROC.png "ROC Curve Output")
+
+
+## Citations for Tools and Software
+
+- **PyMOL**  
+  The PyMOL Molecular Graphics System, Version 1.2r3pre, Schrödinger, LLC.
+
+- **Open Babel**  
+  O'Boyle, N.M., Banck, M., James, C.A., Morley, C., Vandermeersch, T., & Hutchison, G.R. (2011). Open Babel: An open chemical toolbox. *Journal of Cheminformatics*, 3, 33.
+
+- **MMFF94 Force Field**  
+  Halgren, T.A. (1996). Merck Molecular Force Field. I. Basis, form, scope, parameterization, and performance of MMFF94. *Journal of Computational Chemistry*, 17, 490-519.
+
+- **RCSB PDB**  
+  Berman, H.M., et al. (2000). The Protein Data Bank. *Nucleic Acids Research*, 28(1), 235-242.
+
+
+
