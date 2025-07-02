@@ -1,4 +1,3 @@
-
 # Validation Workflow
 
 ## Table of Contents
@@ -14,6 +13,8 @@
 Docking at its best, is a probabilistic heuristic which gives us a much better chance that the ligands we choose are going to prove to be a hit in the real world than if we were to do it by randomly choosing the ligands for the next stage. By running our docking pipeline for a receptor having a chemical library of known active and inactives derived from in vitro assays, we can get an estimate on how effective the scoring function, choice of hyperparameters, ligand preparation, receptor preparation etc. are at enriching the true actives/positives at the top of our predicted ranked list and to eliminate False Negatives and False Positives.
 We do this with the help of a Receiver-Operating Characteristic curve(ROC). The value of the Area Under the ROC curve(AUC score). The AUC score ranges from 0 to 1 and is positively linked with the predictive power of our screening. Where a value of 0.5 means no bettter than random chance, 1 indicative of complete enrichment and 0 showing perfectly negative prediction, most docking workflows have an AUC score ranging from 0.6 to 0.8. 
 The reason for choosing the ROC curve for our validation is because AUC values derived from the curve remain more or less unaffected of the ratios of inactives to actives in the testing dataset.
+
+![Overall Flowchart](Flowchart_Validation.png "Overall Flowchart")
 
 ## Steps of the Valdation Workflow
 ### BindingDB
