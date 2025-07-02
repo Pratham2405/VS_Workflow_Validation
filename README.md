@@ -1,8 +1,18 @@
 
 # Validation Workflow
+
+## Table of Contents
+
+- [Introduction](#introduction)
+- [Steps of the Validation Workflow](#steps-of-the-valdation-workflow)
+  - [BindingDB](#bindingdb)
+  - [Split&Rename_IC50.py](#splitrename_ic50py)
+  - [Virtual Screening](#virtual-screening)
+  - [AUC Determination](#auc-determination)
+
 ## Introduction
 Docking at its best, is a probabilistic heuristic which gives us a much better chance that the ligands we choose are going to prove to be a hit in the real world than if we were to do it by randomly choosing the ligands for the next stage. By running our docking pipeline for a receptor having a chemical library of known active and inactives derived from in vitro assays, we can get an estimate on how effective the scoring function, choice of hyperparameters, ligand preparation, receptor preparation etc. are at enriching the true actives/positives at the top of our predicted ranked list and to eliminate False Negatives and False Positives.
-We do this with the help of a Receiver-Operating Characteristic curve(ROC). The value of the Area Under the ROC curve(AUC score). The AUC score ranges from 0 to 1 and is positively linked with the predictive power of our screening. Where a value of 0.5 means no bettter than random chance, 1 indicative of complete enrichment and 0 showing perfectly negative prediction, most docking workflows have an AUC score of []. 
+We do this with the help of a Receiver-Operating Characteristic curve(ROC). The value of the Area Under the ROC curve(AUC score). The AUC score ranges from 0 to 1 and is positively linked with the predictive power of our screening. Where a value of 0.5 means no bettter than random chance, 1 indicative of complete enrichment and 0 showing perfectly negative prediction, most docking workflows have an AUC score ranging from 0.6 to 0.8. 
 The reason for choosing the ROC curve for our validation is because AUC values derived from the curve remain more or less unaffected of the ratios of inactives to actives in the testing dataset.
 
 ## Steps of the Valdation Workflow
@@ -11,7 +21,7 @@ We want to look for a protein which loosely satisfies the following criteria:
 - Has many experimental data points of `Kd` or `IC50` values for various molecules.
 - Has similarity with your essential gene and has the preferrably has the same source organism.
 
-For our purposes, we will choose Beta-Lactamase, a hydrolase 
+Beta-lactamase enzymes from Pseudomonas aeruginosa are extensively studied because of their central role in antibiotic resistance. These enzymes hydrolyze the β-lactam ring in antibiotics(particularly penicillin and similar antibiotics), rendering them ineffective, and are a major reason for the clinical challenge posed by P. aeruginosa infections.
 
 ![2WZX](2WZX_PyMol_View.png "2WZX Viewed on PyMol")
 
@@ -32,19 +42,6 @@ In `ROC_Script.py`, enter the path to the ranked CSV as input and run the script
 ![ROC Curve Output](ROC.png "ROC Curve Output")
 
 
-## Citations for Tools and Software
-
-- **PyMOL**  
-  The PyMOL Molecular Graphics System, Version 1.2r3pre, Schrödinger, LLC.
-
-- **Open Babel**  
-  O'Boyle, N.M., Banck, M., James, C.A., Morley, C., Vandermeersch, T., & Hutchison, G.R. (2011). Open Babel: An open chemical toolbox. *Journal of Cheminformatics*, 3, 33.
-
-- **MMFF94 Force Field**  
-  Halgren, T.A. (1996). Merck Molecular Force Field. I. Basis, form, scope, parameterization, and performance of MMFF94. *Journal of Computational Chemistry*, 17, 490-519.
-
-- **RCSB PDB**  
-  Berman, H.M., et al. (2000). The Protein Data Bank. *Nucleic Acids Research*, 28(1), 235-242.
 
 
 
