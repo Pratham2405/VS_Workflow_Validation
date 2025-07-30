@@ -36,7 +36,7 @@ To further enhance the difference between the actives and inactives, we can sele
 `Split&Rename_IC50.py` does that and outputs the selected files as separate molecules. It also names the molecules with the molecule's IC50 value so it is easier to catch False Positives and False Negatives later on.
 
 ### Virtual Screening
-An example of a virtual screening workflow has been thoroughly described in (repo link). After running `Split&Rename_IC50.py`, you shall run your in silico docking workflow. Be sure to get a ranked list of ligands with just two columns - Experimentally derived IC50 values and Predicted Binding Affinity. Export this ranking in a CSV file.
+An example of a virtual screening workflow has been thoroughly described in [Vina_Docking_Protocol](https://github.com/Pratham2405/Vina_Docking_Protocol). After running `Split&Rename_IC50.py`, you shall run your in silico docking workflow. Be sure to get a ranked list of ligands with just two columns - Experimentally derived IC50 values and Predicted Binding Affinity. Export this ranking in a CSV file.
 
 ### AUC Determination
 In `ROC_Script.py`, enter the path to the ranked CSV as input and run the script. The ROC curve would be plotted via `matplotlib` with the AUC score displayed as shown below:
